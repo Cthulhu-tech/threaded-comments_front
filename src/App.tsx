@@ -12,7 +12,7 @@ import "./style/global.scss";
 export const App = () => {
 
   const dispatch = useDispatch();
-  const {load, data, error} = UseFetch((process.env.REACT_APP_SERVER as string) + "api/threads", "GET");
+  const {load, data, error} = UseFetch((process.env.REACT_APP_SERVER as string) + "api/threads", "POST", {start: 0, end: 1});
 
   useEffect(() => {
 

@@ -7,14 +7,8 @@ export const HomeView = () => {
 
     const store = useSelector((store: ReduxStore) => store.THREAD);
 
-    useEffect(() => {
+    useEffect(() => {}, [store]);
 
-        console.log(store)
-
-    }, [store]);
-
-    return <>{
-        store.threads.map((thread) => <Thread {...thread} key={thread.id}/>)
-    }</>
+    return <main className="main">{store.threads.map((thread) => <Thread {...thread} key={thread.id}/>)}</main>
 
 }
