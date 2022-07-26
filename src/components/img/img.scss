@@ -1,0 +1,48 @@
+.image {
+
+    cursor: pointer;
+    height: auto;
+    max-width: 100%;
+    border: 1px solid rgb(119, 119, 119);
+}
+
+.sub-container_img {
+
+    margin: 5px;
+    width: 200px;
+
+}
+
+.popup_img {
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    position: fixed;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(128, 128, 128, .5);
+
+}
+
+.image_popup{
+
+    border: 1px solid black;
+
+}
+
+.image_container_info{
+
+    width: 100%;
+    display: flex;
+
+}
+
+.small{
+
+    color: gray;
+    font-size: 12px;
+
+}
