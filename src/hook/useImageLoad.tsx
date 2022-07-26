@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const UseImageLoad = (src: string) => {
 
+    const [imgRef] = useState(new Image());
     const [image, setImage] = useState({width: 0, height: 0});
 
-    const imgElement = new Image();
+    useEffect(() => {
 
-    imgElement.onload = function() {
+        imgRef.onload = function() {
 
-        setImage({width: imgElement.width, height: imgElement.height});
+            setImage({width: imgRef.width, height: imgRef.height});
+    
+        }
+    
+        imgRef.src = src;
 
-    }
+    }, []);
 
-    imgElement.src = src;
-
-    return { image };
+    return { image,  imgRef };
 
 }

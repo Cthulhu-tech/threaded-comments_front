@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-export const UseFetch = (url: string, method: string) => {
+export const UseFetch = (url: string, method: string, body?: any) => {
 
     const [load, setLoad] = useState(true);
     const [data, setData] = useState<any>();
@@ -16,7 +16,10 @@ export const UseFetch = (url: string, method: string) => {
             headers: {
                 'Content-type': 'application/json',
                 'Accept': 'application/json'
-            }
+            },
+
+            body: JSON.stringify(body)
+
         })
         .then((response) => {
 
