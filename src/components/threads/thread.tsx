@@ -1,4 +1,4 @@
-import { dateGenetate } from "../../utils/dateGenetate";
+import { dateFormating } from "../../utils/dateFormating";
 import { useInView } from "react-intersection-observer";
 import { Threads } from "../../interface/interface";
 import { Image } from "../img/img";
@@ -16,7 +16,7 @@ export const Thread = (thread: Threads) => {
         <article className="thread_info">
             <h1 className="thread_theam text  btn">{thread.name}</h1>
             <p className="text creator">{thread.creator}</p>
-            <p className="text">{dateGenetate(thread.date_create)}</p>
+            <p className="text">{dateFormating(thread.date_create)}</p>
             <p className="text">№{thread.id}</p>
             <div className="btn answer">ответ</div>
         </article>
