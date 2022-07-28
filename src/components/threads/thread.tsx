@@ -1,12 +1,9 @@
 import { dateFormating } from "../../utils/dateFormating";
 import { Threads } from "../../interface/interface";
 import { Image } from "../img/img";
-import { useEffect } from 'react';
 import './thread.scss';
 
 export const Thread = (thread: Threads) => {
-
-    useEffect(() => { }, []);
 
     return <section className="thread_container">
         <article className="thread_info">
@@ -19,6 +16,7 @@ export const Thread = (thread: Threads) => {
         <article className="image_container">
             {thread.img.map((img, i) => <Image key={i} {...{src: img, alt: thread.img_name[i]}} />)}
         </article>
+        
     </section>
 
 }

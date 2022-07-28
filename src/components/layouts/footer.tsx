@@ -1,53 +1,33 @@
 import { updateThreadStore } from '../../redux/store/threadInfo';
 import { useInView } from 'react-intersection-observer';
 import { ReduxStore } from '../../interface/interface';
+import { UseFetch } from '../../hook/useFetch';
+import { Loading } from '../loading/loading';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 
 export const Footer = () => {
 
     const dispatch = useDispatch();
-    const [error, setError] = useState({error: ''});
+    const {load, data, error, fetchData} = UseFetch("POST");
     const store = useSelector((state: ReduxStore) => state.THREAD);
 
-    const updateData = () => {
-
-        fetch((process.env.REACT_APP_SERVER as string) + "api/threads", {
-            method: 'POST',
-            mode: 'cors',
-            redirect: 'follow',
-            credentials: "include",
-            headers: {
-                'Content-type': 'application/json',
-                'Accept': 'application/json'
-            },
-
-            body: JSON.stringify({start: store.threads.length, end: store.threads.length + 1})
-
-        })
-        .then((response) => {
-
-            if(!response.ok) response.json().then(json => setError(json));
-
-            return response.json();
-
-        })
-        .then((json) => {
-
-            dispatch(updateThreadStore(json) as any);
-
-        });
-
-    }
+    const updateData = () => fetchData((process.env.REACT_APP_SERVER as string) + "api/threads", {thread: store.threads.length});
 
     const [ref] = useInView({threshold: 0, onChange: updateData});
 
-    useEffect(() => {}, [error]);
+    useEffect(() => {
 
-    return <footer ref={error.error !== "limit not found" ? ref : null} className="footer layout">
+        if(data && data.length > 0) dispatch(updateThreadStore(data) as any);
 
-        {error.error === "limit not found" && "конец"}
+    }, [load]);
+
+    if(load) return <Loading/>
+
+    return <footer ref={error.message !== "limit not found" ? ref : null} className="footer layout">
+
+        {error.message === "limit not found" && "конец"}
 
     </footer>
 

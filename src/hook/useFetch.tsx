@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 
-export const UseFetch = (url: string, method: string, body?: any) => {
+export const UseFetch = (method: string) => {
 
     const [load, setLoad] = useState(true);
     const [data, setData] = useState<any>();
     const [error, setError] = useState({error: false, message: ""});
 
-    useEffect(() => {
+    const fetchData = (url: string, body?: any) => {
 
         fetch(url, {
             method,
@@ -23,7 +23,17 @@ export const UseFetch = (url: string, method: string, body?: any) => {
         })
         .then((response) => {
 
-            return response.json();
+            if(!response.ok) {
+
+                setLoad(false);
+                
+                response.json().then(json => setError(json));
+
+            }else{
+
+                return response.json();
+
+            }
 
         })
         .then((json) => {
@@ -37,10 +47,12 @@ export const UseFetch = (url: string, method: string, body?: any) => {
             setLoad(false);
             setError({error: true, message: error.message});
 
-        })
+        });
 
-    }, []);
+    }
 
-    return {load , data, error};
+    useEffect(() => {}, []);
+
+    return {load , data, error, fetchData};
 
 }

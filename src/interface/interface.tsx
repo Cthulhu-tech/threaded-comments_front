@@ -20,6 +20,26 @@ export type ThreadsStore = {
 
 }
 
+export type LastMessageStore = {
+
+    message: LastMessage[]
+
+}
+
+
+export interface LastMessage {
+    id: number;
+    name_user: string;
+    text_message: string;
+    prev_message: string[];
+    next_message: string[];
+    img: string[];
+    img_name: string[];
+    date_create: string;
+}
+
+
 export type ReduxStore = {
     THREAD: ThreadsStore,
+    LAST_MESSAGE: LastMessageStore
 }
