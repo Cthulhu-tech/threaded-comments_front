@@ -14,7 +14,7 @@ export const App = () => {
   const dispatch = useDispatch();
   const {load, data, error, fetchData} = UseFetch("POST");
 
-  useEffect(() => {fetchData(((process.env.REACT_APP_SERVER as string) + "api/threads"), {thread: 0})}, []);
+  useEffect(() => {fetchData(((process.env.REACT_APP_SERVER as string) + "threads"), {id: 0})}, []);
 
   useEffect(() => {
 

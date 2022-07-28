@@ -10,7 +10,7 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    width: clamp(100px, 90%, 1980px);
+    width: clamp(100px, 70%, 1980px);
     border-top: 1px solid $border;
 
 }
@@ -32,6 +32,7 @@
 
 .image_container{
 
+    float: left;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -55,5 +56,32 @@
 
     text-align: start;
     text-decoration: 1px underline dotted black;
+
+}
+
+.thread_description {
+
+    margin: 20px 0;
+    font-weight: 100;
+    overflow: hidden;
+    max-height: 55px;
+    text-align: start;
+	display: -webkit-box;
+	-webkit-line-clamp: 4;
+    max-width: clamp(100px, 80%, 800px);
+
+}
+
+.spoiler {
+
+    color: gray;
+    cursor: pointer;
+    background-color: gray;
+
+    &:hover {
+
+        color: black;
+
+    }
 
 }

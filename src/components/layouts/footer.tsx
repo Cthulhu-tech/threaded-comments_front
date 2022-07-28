@@ -13,7 +13,7 @@ export const Footer = () => {
     const {load, data, error, fetchData} = UseFetch("POST");
     const store = useSelector((state: ReduxStore) => state.THREAD);
 
-    const updateData = () => fetchData((process.env.REACT_APP_SERVER as string) + "api/threads", {thread: store.threads.length});
+    const updateData = () => fetchData((process.env.REACT_APP_SERVER as string) + "threads", {id: store.threads.length});
 
     const [ref] = useInView({threshold: 0, onChange: updateData});
 
@@ -23,11 +23,9 @@ export const Footer = () => {
 
     }, [load]);
 
-    if(load) return <Loading/>
+    return <footer ref={error.message !== "not found" ? ref : null} className="footer layout">
 
-    return <footer ref={error.message !== "limit not found" ? ref : null} className="footer layout">
-
-        {error.message === "limit not found" && "конец"}
+        {error.message === "not found" && "конец"}
 
     </footer>
 
