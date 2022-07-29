@@ -4,6 +4,7 @@
 
     padding: 5px;
     display: flex;
+    position: relative;
     border-radius: 4px;
     margin: 20px 0 0 20px;
     flex-direction: column;
@@ -11,6 +12,13 @@
     background-color: #ddd;
     width: clamp(100px, 100%, 800px);
     border: 1px solid rgb(212, 212, 212);
+
+}
+
+.sub_message{
+
+    margin: 10px 0 0 10px;
+    border: 1px solid gray;
 
 }
 
@@ -49,6 +57,7 @@
 
 .message_txt{
 
+    width: 100%;
     font-size: 16px;
     margin: 10px 5px;
 
