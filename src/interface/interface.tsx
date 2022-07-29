@@ -12,6 +12,7 @@ export interface Threads {
     name: string;
     date_create: string;
     creator: string;
+    message: LastMessage[];
 }
 
 export type ThreadsStore = {
@@ -19,13 +20,6 @@ export type ThreadsStore = {
     threads: Threads[]
 
 }
-
-export type LastMessageStore = {
-
-    message: LastMessage[]
-
-}
-
 
 export interface LastMessage {
     id: number;
@@ -41,5 +35,4 @@ export interface LastMessage {
 
 export type ReduxStore = {
     THREAD: ThreadsStore,
-    LAST_MESSAGE: LastMessageStore
 }
