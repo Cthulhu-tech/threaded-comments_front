@@ -1,0 +1,96 @@
+@import "../../style/color.scss";
+
+.message{
+
+    padding: 5px;
+    display: flex;
+    border-radius: 4px;
+    margin: 20px 0 0 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #ddd;
+    width: clamp(100px, 90%, 800px);
+    border: 1px solid rgb(212, 212, 212);
+
+}
+
+.msg_info {
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.image_container-msg{
+
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+}
+
+.msg{
+
+    margin: 2px;
+    color: gray;
+    font-size: 14px;
+
+}
+
+.user {
+
+    text-transform: capitalize;
+
+}
+
+.message_txt{
+
+    font-size: 16px;
+    margin: 10px 5px;
+
+}
+
+.drop_down_list{
+
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    background-color: gray;
+
+}
+
+.comments {
+
+    margin: 5px;
+    color: $orange;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+
+    &:hover {
+
+        filter: brightness(90%);
+
+    }
+
+}
+
+.container-next_message{
+
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+
+}
+
+.dynamic_message{
+
+    top: 10px;
+    left: -10px;
+    position: absolute;
+
+}
