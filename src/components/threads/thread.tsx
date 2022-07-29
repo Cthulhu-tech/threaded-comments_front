@@ -33,7 +33,7 @@ export const Thread = (thread: Threads) => {
                 }
             })}
         </article>
-        <>{thread.message.slice(0).reverse().map(msg => <Message key={msg.id} {...msg} />)}</>
+        <>{thread.message.slice(0).reverse().map(msg => <Message key={msg.id} {...{msg: msg, className: "message"}} />)}</>
     </section>
 
 }
