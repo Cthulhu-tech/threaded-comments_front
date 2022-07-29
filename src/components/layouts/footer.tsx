@@ -18,14 +18,14 @@ export const Footer = () => {
     const [ref] = useInView({threshold: 0, onChange: updateData});
 
     useEffect(() => {
-
+        
         if(data && data.length > 0) dispatch(updateThreadStore(data) as any);
 
     }, [load]);
 
     return <footer ref={error.message !== "not found" ? ref : null} className="footer layout">
 
-        {error.message === "not found" && "конец"}
+        {error.message === "not found" && <p className="end_load">конец</p>}
 
     </footer>
 
