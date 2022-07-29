@@ -3,6 +3,7 @@ import { Threads } from "../../interface/interface";
 import parse, { domToReact } from 'html-react-parser';
 import { Image } from "../img/img";
 import './thread.scss';
+import { Message } from "../message/message";
 
 export const Thread = (thread: Threads) => {
 
@@ -32,6 +33,7 @@ export const Thread = (thread: Threads) => {
                 }
             })}
         </article>
+        <>{thread.message.slice(0).reverse().map(msg => <Message key={msg.id} {...msg} />)}</>
     </section>
 
 }
