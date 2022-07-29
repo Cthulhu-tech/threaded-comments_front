@@ -10,7 +10,7 @@ export const UseSearch = () => {
     useEffect(() => {},[])
 
     const searchMessage = (id: number) => {
-
+        
         const filteredArray = store
         .filter((thread) => thread.message.some((msg) => msg.id === id))
         .map(thread => thread.message.filter(msg => msg.id === id));
