@@ -4,7 +4,6 @@
 
     padding: 5px;
     display: flex;
-    position: relative;
     border-radius: 4px;
     margin: 20px 0 0 20px;
     flex-direction: column;
@@ -105,15 +104,5 @@
     z-index: 9999;
     position: absolute;
     width: clamp(100px, 100%, 800px);
-
-}
-
-.container-prev_message{
-
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    position: relative;
-    flex-direction: column;
 
 }

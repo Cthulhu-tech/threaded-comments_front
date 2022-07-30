@@ -4,9 +4,11 @@ import { useMousePosition } from "../../hook/useMouse";
 import { UseSearch } from "../../hook/useSearch";
 import { Image } from "../img/img";
 import "./message.scss";
+import { useState } from 'react';
 
 export const Message = (data: {msg: LastMessage, className: string}) => {
 
+    const [position, setPosition] = useState<boolean>();
     const { mousePosition, GetMousePosition } = useMousePosition();
     const { message, searchMessage, deletMessage} = UseSearch();
 
@@ -22,7 +24,12 @@ export const Message = (data: {msg: LastMessage, className: string}) => {
                 {data.msg.prev_message && data.msg.prev_message.map((prev) => <p key={prev} className="comments" onMouseOver={(event)=> {
                     searchMessage(+prev);
                     GetMousePosition(event);
+                    setPosition(true);
                 }}> » {prev}</p>)}
+                {message && position && 
+                <div onMouseLeave={deletMessage} style={{translate: `translate(${mousePosition.x}px, ${mousePosition.y}px)`}} className="dynamic_message">
+                    <Message {...{msg: message, className: "message sub_message"}}/>
+                </div>}
             </div>
             <div className="image_container-msg">
                 {data.msg?.img && data.msg?.img.map((img, i) => <Image key={i} {...{src: img, alt: data.msg.img_name && data.msg?.img_name[i]}} />)}
@@ -33,12 +40,13 @@ export const Message = (data: {msg: LastMessage, className: string}) => {
             {data.msg.next_message && data.msg.next_message.map((next) => <p key={next} className="comments" onMouseOver={(event)=> {
                 searchMessage(+next);
                 GetMousePosition(event);
+                setPosition(false);
             }} > » {next}</p>)}
+            {message && !position &&
+            <div onMouseLeave={deletMessage} style={{translate: `translate(${mousePosition.x}px, ${mousePosition.y}px)`}} className="dynamic_message">
+                <Message {...{msg: message, className: "message sub_message"}}/>
+            </div>}
         </div>
-        {message && 
-        <div onMouseLeave={deletMessage} style={{translate: `translate(${mousePosition.x}px, ${mousePosition.y}px)`}} className="dynamic_message">
-            <Message {...{msg: message, className: "message sub_message"}}/>
-        </div>}
     </div>
 
 }
