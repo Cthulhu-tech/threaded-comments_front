@@ -17,7 +17,13 @@ export interface Threads {
 
 export type ThreadsStore = {
 
-    threads: Threads[]
+    threads: Threads[],
+
+}
+
+export type MessageStore = {
+
+    message: LastMessage[],
 
 }
 
@@ -35,4 +41,5 @@ export interface LastMessage {
 
 export type ReduxStore = {
     THREAD: ThreadsStore,
+    MESSAGE: MessageStore
 }
