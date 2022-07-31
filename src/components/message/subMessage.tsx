@@ -22,14 +22,16 @@ export const SubMessage = (props: MessageType) => {
     }}
     >
     {!props.stateMessage && props.data.msg.next_message && props.data.msg.next_message.map((next) => 
-    <span key={next} className="comments"
+    <span key={next} 
+    className={message && message.id === +next ? "comments active" : "comments"}
     onMouseEnter={()=> {
-        console.log(searchMessage(+next))
+        searchMessage(+next);
     }} > » {next}</span>)}
     {props.stateMessage && props.data.msg.prev_message && props.data.msg.prev_message.map((prev) => 
-    <span key={prev} className="comments"
+    <span key={prev}
+    className={message && message.id === +prev ? "comments active" : "comments"}
     onMouseEnter={()=> {
-        console.log(searchMessage(+prev))
+        searchMessage(+prev);
     }} > » {prev}</span>)}
     {message && message.id !== props.data.msg.id &&
     <div
