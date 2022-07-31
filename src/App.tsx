@@ -16,24 +16,13 @@ export const App = () => {
   const dispatch = useDispatch();
   const {load, data, error, fetchData} = UseFetch("POST");
 
-  const [storedValue, setValue] = useLocalStorage("hiddenMessage", []);
+  const [storedValue] = useLocalStorage("hiddenMessage", []);
     
-  useEffect(() => {
-
-      dispatch(updateHiddenMessageStore(storedValue as string[]));
-
-  },[storedValue]);
-
+  useEffect(() => {dispatch(updateHiddenMessageStore(storedValue as string[]));},[storedValue]);
   useEffect(() => {fetchData(((process.env.REACT_APP_SERVER as string) + "threads"), {id: 0})}, []);
-
   useEffect(() => {
-
-    if(!error.error && data && data.length > 0){
-
+    if(!error.error && data && data.length > 0)
       dispatch(updateThreadStore(data) as any);
-      
-    }
-
   }, [load, data, error]);
 
   if(load) return <Loading/>
