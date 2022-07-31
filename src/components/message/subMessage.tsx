@@ -14,7 +14,7 @@ export const SubMessage = (props: MessageType) => {
     }, []);
 
     return <div className="container_message"
-    onMouseEnter={()=> {        
+    onMouseEnter={()=> {      
         !searchMessage(props.data.msg.id) && addMessage(props.data.msg.id);
     }}
     onMouseLeave={() => {
@@ -22,20 +22,17 @@ export const SubMessage = (props: MessageType) => {
     }}
     >
     {!props.stateMessage && props.data.msg.next_message && props.data.msg.next_message.map((next) => 
-    <p key={next} className="comments"
+    <span key={next} className="comments"
     onMouseEnter={()=> {
-        searchMessage(props.data.msg.id);
-        searchMessage(+next);
-    }} > » {next}</p>)}
+        console.log(searchMessage(+next))
+    }} > » {next}</span>)}
     {props.stateMessage && props.data.msg.prev_message && props.data.msg.prev_message.map((prev) => 
-    <p key={prev} className="comments"
+    <span key={prev} className="comments"
     onMouseEnter={()=> {
-        searchMessage(props.data.msg.id);
-        searchMessage(+prev);
-    }} > » {prev}</p>)}
+        console.log(searchMessage(+prev))
+    }} > » {prev}</span>)}
     {message && message.id !== props.data.msg.id &&
     <div
-    
     onMouseLeave={() => {
         message && deletMessage(message.id);
     }} className="dynamic_message">
