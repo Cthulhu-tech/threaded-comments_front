@@ -43,3 +43,13 @@ export type ReduxStore = {
     THREAD: ThreadsStore,
     MESSAGE: MessageStore
 }
+
+export type MessageType = {
+
+    data: {
+        msg: LastMessage;
+        className: string;
+    }
+    stateMessage: boolean;
+
+}

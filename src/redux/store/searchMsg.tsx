@@ -9,8 +9,10 @@ const defaultState = {
 
 const updateMessage = "MESSAGE_UPDATE";
 const deleteMessage = "MESSAGE_DELETE";
+const deleteallMessage = "MESSAGE_DELETE_ALL";
 
-export const MessageStore = (state = defaultState, action:Action<string, LastMessage[] | LastMessage>) => {
+export const MessageStore = (state = defaultState, action:Action<string, LastMessage[] | number>) => {
+    console.log(action)
     switch (action.type){
         case updateMessage:
             const index = state.message.findIndex((msg: LastMessage) => msg.id === (action.payload as LastMessage[])[0].id);
@@ -18,10 +20,14 @@ export const MessageStore = (state = defaultState, action:Action<string, LastMes
             return { message: [...state.message, ...(action.payload as LastMessage[])]}
             return state;
         case deleteMessage:
-            return {...(state.message as LastMessage[]).filter((thread) => (thread.id as number) !== (action.payload as LastMessage).id)}
+            return {message: [...(state.message as LastMessage[]).filter((thread) => thread.id !== (action.payload as number))]}
+        case deleteallMessage:
+            return {message: []}
         default:
             return state;
     }
 }
 
 export const updateMessageStore = (payload: LastMessage[]) => ({ type: updateMessage, payload });
+export const deleteMessageStore = (payload: number) => ({ type: deleteMessage, payload });
+export const deleteAllMessageStore = () => ({ type: deleteallMessage });
