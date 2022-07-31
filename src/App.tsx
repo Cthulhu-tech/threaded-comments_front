@@ -1,5 +1,7 @@
+import { updateHiddenMessageStore } from './redux/store/hiddenMessage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { updateThreadStore } from './redux/store/threadInfo';
+import { useLocalStorage } from './hook/useLocalStorage';
 import { Layouts } from './components/layouts/layouts';
 import { Loading } from './components/loading/loading';
 import { Error } from './components/error/error';
@@ -13,6 +15,14 @@ export const App = () => {
 
   const dispatch = useDispatch();
   const {load, data, error, fetchData} = UseFetch("POST");
+
+  const [storedValue, setValue] = useLocalStorage("hiddenMessage", []);
+    
+  useEffect(() => {
+
+      dispatch(updateHiddenMessageStore(storedValue as string[]));
+
+  },[storedValue]);
 
   useEffect(() => {fetchData(((process.env.REACT_APP_SERVER as string) + "threads"), {id: 0})}, []);
 
