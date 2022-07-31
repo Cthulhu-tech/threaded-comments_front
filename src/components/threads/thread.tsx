@@ -1,11 +1,17 @@
+import { ReduxStore, Threads } from "../../interface/interface";
 import { dateFormating } from "../../utils/dateFormating";
-import { Threads } from "../../interface/interface";
 import parse, { domToReact } from 'html-react-parser';
-import { Image } from "../img/img";
-import './thread.scss';
 import { Message } from "../message/message";
+import { useSelector } from "react-redux";
+import { Image } from "../img/img";
+import { useEffect } from "react";
+import './thread.scss';
 
 export const Thread = (thread: Threads) => {
+
+    const msg = useSelector((store: ReduxStore) => store.MESSAGE);
+
+    useEffect(() => {},[msg]);
 
     return <section className="thread_container">
         <article className="thread_info">
