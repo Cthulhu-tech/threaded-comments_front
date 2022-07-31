@@ -5,7 +5,7 @@ import { useEffect } from "react";
 
 export const SubMessage = (props: MessageType) => {
 
-    const { message, searchMessage, deletMessage, deteleAll } = UseSearch();
+    const { message, addMessage, searchMessage, deletMessage, deleteAll } = UseSearch();
 
     useEffect(() => {
 
@@ -15,10 +15,10 @@ export const SubMessage = (props: MessageType) => {
 
     return <div className="container_message"
     onMouseEnter={()=> {        
-        searchMessage(props.data.msg.id);
+        !searchMessage(props.data.msg.id) && addMessage(props.data.msg.id);
     }}
     onMouseLeave={() => {
-        deletMessage(props.data.msg.id);
+        props.data.className === "message" ? deleteAll() : deletMessage(props.data.msg.id);
     }}
     >
     {!props.stateMessage && props.data.msg.next_message && props.data.msg.next_message.map((next) => 

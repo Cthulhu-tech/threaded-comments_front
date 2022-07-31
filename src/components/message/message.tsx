@@ -1,15 +1,12 @@
 import { dateFormating } from "../../utils/dateFormating";
 import { LastMessage } from "../../interface/interface";
-import { UseSearch } from "../../hook/useSearch";
 import { SubMessage } from "./subMessage";
 import { Image } from "../img/img";
 import "./message.scss";
 
 export const Message = (data: {msg: LastMessage, className: string}) => {
 
-    const {message, searchMessage, deletMessage, deteleAll}= UseSearch();
-
-    return <div className={data.className} onMouseLeave={() => data.className === "message" && deteleAll()}>
+    return <div className={data.className}>
         <div className="msg_info">
             <p className="msg user">{data.msg.name_user}</p>
             <p className="msg">{dateFormating(data.msg.date_create)}</p>
