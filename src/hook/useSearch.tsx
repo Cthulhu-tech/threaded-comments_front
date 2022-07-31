@@ -1,9 +1,8 @@
+import { deleteAllMessageStore, deleteMessageStore, updateMessageStore } from '../redux/store/searchMsg';
 import { LastMessage, ReduxStore } from '../interface/interface';
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from 'react-redux';
-import { deleteAllMessageStore, deleteMessageStore, updateMessageStore } from '../redux/store/searchMsg';
-
 export const UseSearch = () => {
 
     const dispatch = useDispatch();
@@ -12,7 +11,16 @@ export const UseSearch = () => {
     const [message, setMessage] = useState<LastMessage | null>();
     const store = useSelector((store: ReduxStore) => store.THREAD.threads);
 
-    useEffect(() => {},[msg, message])
+    useEffect(() => {},[msg, message]);
+
+    const addMessage = (id: number) => {
+
+        const filter = store.filter((thread) => thread.message.some((msg) => msg.id === id));
+        const filteredArray = filter.map(thread => thread.message.filter(msg => msg.id === id));
+        dispatch(updateMessageStore(filteredArray[0]));
+        setMessage(filteredArray[0][0]);
+
+    }
 
     const searchMessage = (id: number) => {
         
@@ -20,7 +28,7 @@ export const UseSearch = () => {
 
         if(filter.length === 0){
 
-            console.log('fetchdata')
+            return false;
 
         }else{
 
@@ -28,15 +36,13 @@ export const UseSearch = () => {
 
             if(msg.message.find(msg=> msg.id === id)){
     
-                console.log('find');
-
-                return;
+                return true;
     
             }else{
-    
-                dispatch(updateMessageStore(filteredArray[0]));
                 
                 setMessage(filteredArray[0][0]);
+
+                return false;
     
             }
 
@@ -51,13 +57,13 @@ export const UseSearch = () => {
         
     };
 
-    const deteleAll = () => {
+    const deleteAll = () => {
 
         setMessage(null);
         dispatch(deleteAllMessageStore());
     
     };
 
-    return {message, searchMessage, deletMessage, deteleAll}
+    return {message, addMessage, searchMessage, deletMessage, deleteAll}
 
 }
