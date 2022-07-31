@@ -1,21 +1,29 @@
 import { LastMessage, ReduxStore } from "../../interface/interface";
+import { updatePopup } from "../../redux/store/settingPopup";
 import { dateFormating } from "../../utils/dateFormating";
 import { ContainerSetting } from "./containerSetting";
 import { useEffect, useMemo, useState } from "react";
 import { SubMessage } from "./subMessage";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { Image } from "../img/img";
 import "./message.scss";
 
 export const Message = (data: {msg: LastMessage, className: string}) => {
 
     const msg = data.msg;
+    const dispatch = useDispatch();
     const [open, setOpen] = useState(false);
+    const popup = useSelector((store: ReduxStore) => store.POPUP);
     const hiddenMsg = useSelector((store: ReduxStore) => store.HIDDEN_MESSAGE);
     const searchMessage = () => hiddenMsg.filter((value: string) => +value === data.msg.id).length > 0;
     const hiddenMessage = useMemo(() => searchMessage(), [hiddenMsg]);
 
-    useEffect(() => {}, [hiddenMsg]);
+    useEffect(() => {
+
+        if(popup.id !== msg.id) setOpen(false);
+
+    }, [open, popup, hiddenMsg]);
 
     return <div className={data.className}>
         <div className="msg_info">
@@ -23,13 +31,14 @@ export const Message = (data: {msg: LastMessage, className: string}) => {
             <p className="msg">{dateFormating(msg.date_create)}</p>
             <p className="msg">№{data.msg.id}</p>
             <div className="btn drop_down_list" 
-                onMouseEnter={() => setOpen(true)}
+                onClick={() =>{
+                    setOpen(!open);
+                    dispatch(updatePopup({id: msg.id, open: !open }));
+                }}
             >
-                <div className="sub-drop_down_list" 
-
-                >
-                    {open && <ContainerSetting {...{msg}}/>}
-                </div>
+            </div>
+            <div className="sub-drop_down_list" onMouseLeave={() => setOpen(false)}>
+                {popup.id === msg.id && open && <ContainerSetting {...{msg}}/>}
             </div>
         </div>
         <div className="message_txt">

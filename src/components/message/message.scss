@@ -65,6 +65,8 @@
 
 .drop_down_list{
 
+    padding: 7px;
+    position: relative;
     border-radius: 4px;
     background-color: gray;
 
@@ -118,8 +120,7 @@
     user-select: none;
     position: absolute;
     border-radius: 2px;
-    border: 1px solid gray;
-    background-color: white;
+    background-color: #eee;
 
 }
 
@@ -129,15 +130,9 @@
 
     &:hover {
 
-        color: gray;
+        color: white;
+        background-color: gray;
 
     }
-
-}
-
-.sub-drop_down_list{
-
-    padding: 7px;
-    position: relative;
 
 }
