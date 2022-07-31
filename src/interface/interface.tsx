@@ -40,9 +40,15 @@ export interface LastMessage {
 
 
 export type ReduxStore = {
-    THREAD: ThreadsStore,
+    THREAD: ThreadsStore;
     MESSAGE: MessageStore;
     HIDDEN_MESSAGE: string[];
+    POPUP: Popup;
+}
+
+export type Popup = {
+    id: number;
+    open: boolean;
 }
 
 export type MessageType = {
