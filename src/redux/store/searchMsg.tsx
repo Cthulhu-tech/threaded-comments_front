@@ -12,7 +12,6 @@ const deleteMessage = "MESSAGE_DELETE";
 const deleteallMessage = "MESSAGE_DELETE_ALL";
 
 export const MessageStore = (state = defaultState, action:Action<string, LastMessage[] | number>) => {
-    console.log(action)
     switch (action.type){
         case updateMessage:
             const index = state.message.findIndex((msg: LastMessage) => msg.id === (action.payload as LastMessage[])[0].id);

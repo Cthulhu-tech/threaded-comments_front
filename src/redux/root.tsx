@@ -1,3 +1,4 @@
+import { HiddenMessageStore } from "./store/hiddenMessage";
 import { combineReducers, createStore } from "redux";
 import { ThreadsStore } from "./store/threadInfo";
 import { MessageStore } from "./store/searchMsg";
@@ -7,7 +8,8 @@ import { MessageStore } from "./store/searchMsg";
 const root = combineReducers({
 
     THREAD: ThreadsStore,
-    MESSAGE: MessageStore
+    MESSAGE: MessageStore,
+    HIDDEN_MESSAGE: HiddenMessageStore
     
 });
 
