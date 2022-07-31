@@ -36,6 +36,8 @@ export const UseSearch = () => {
 
             if(msg.message.find(msg=> msg.id === id)){
     
+                setMessage(null);
+
                 return true;
     
             }else{
