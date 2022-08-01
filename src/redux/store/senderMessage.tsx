@@ -21,13 +21,17 @@ export const SenderMessageStore = (state = defaultState, action:Action<string, s
         case SendMessageHandler:
             return {...state, message: action.payload as string}
         case SendAddUserHandler:
+            const index = state.from.findIndex((id: number) => id === action.payload as number);
+            if(index === -1)
             return {...state, from: [...state.from, action.payload as number]}
+            return state;
         case SendDeleteUserHandler:
             return {...state, from: [...state.from.filter((userId) => userId !== action.payload as number)]}
         default:
             return state;
     }
 }
+
 
 export const openHandlerSender = (payload: boolean) => ({ type: SendOpenHandler, payload });
 export const updateMessageHandlerSender = (payload: string) => ({ type: SendMessageHandler, payload });
