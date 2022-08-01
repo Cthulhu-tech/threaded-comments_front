@@ -1,11 +1,11 @@
 import { Action } from "../../interface/interface";
 
 
-const defaultState = [""];
+const defaultState = [0];
 
 const updateMessage = "HIDDEN_MESSAGE_UPDATE";
 
-export const HiddenMessageStore = (state = defaultState, action:Action<string, string[]>) => {
+export const HiddenMessageStore = (state = defaultState, action:Action<string, number[]>) => {
     switch (action.type){
         case updateMessage:
             return action.payload;
@@ -14,4 +14,4 @@ export const HiddenMessageStore = (state = defaultState, action:Action<string, s
     }
 }
 
-export const updateHiddenMessageStore = (payload: string[]) => ({ type: updateMessage, payload });
+export const updateHiddenMessageStore = (payload: number[]) => ({ type: updateMessage, payload });
