@@ -4,7 +4,7 @@ import { Action, SenderMessage,  } from "../../interface/interface";
 const defaultState = {
 
     from: [],
-    message: null,
+    message: "",
     open: false
 
 }
