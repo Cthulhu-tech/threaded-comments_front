@@ -2,20 +2,72 @@
 
 .container-sending {
 
-    top: 50%;
-    left: 50%;
+    width: 100%;
     display: flex;
     min-height: 300px;
-    position: absolute;
+    flex-direction: column;
     background-color: #ddd;
-    border-top: 1px solid white;
-    width: clamp(280px, 60%, 800px);
-    transform: translate(-50%, -50%);
 
 }
  
 .container-message{
 
-    
+    width: 100%;
+    height: 100%;
+
+}
+
+.container-textarea{
+
+    width: 100%;
+    resize: none;
+    height: 100%;
+    outline: none;
+    padding: 3px 5px;
+    min-height: 300px;
+    box-sizing: border-box;
+
+}
+
+.container-button{
+
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+}
+
+.btn-primary{
+
+    margin: 5px;
+    width: 80px;
+    display: flex;
+    padding: 5px 10px;
+    align-items: center;
+    justify-content: center;
+    background-color: #eee;
+
+}
+
+.btn-sender{
+
+    border: none;
+    padding: 7px 10px;
+
+    &:hover {
+
+        background-color: rgb(175, 175, 175);
+
+    }
+
+}
+
+.message_from{
+
+    width: 100%;
+    color: $orange;
+    padding: 2px 4px;
 
 }

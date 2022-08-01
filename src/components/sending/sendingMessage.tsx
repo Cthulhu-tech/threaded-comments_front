@@ -1,34 +1,64 @@
-import useDrag from '../../hook/useElementPosition';
+import { deleteUserHandlerSender, openHandlerSender, updateMessageHandlerSender } from '../../redux/store/senderMessage';
 import { ReduxStore } from '../../interface/interface';
-import { useEffect, useRef, useState } from 'react';
+import { UseFetch } from '../../hook/useFetch';
 import { useSelector } from 'react-redux';
+import { OnDrag } from '../onDrag/onDrag';
+import { useDispatch } from 'react-redux';
+import { useEffect, useRef } from 'react';
 import './sendingMessage.scss';
 
 export const SendingMessage = () => {
 
-    const storeSender = useSelector((store: ReduxStore) => store.SENDER);
+    const dispatch = useDispatch();
+    const ref = useRef<HTMLTextAreaElement>(null);
+    const store = useSelector((store: ReduxStore) => store.SENDER);
 
-    const divRef = useRef(null);
+    const {load , data, error, fetchData} = UseFetch('POST');
 
-    const [translate, setTranslate] = useState({ x: 0, y: 0 });
-  
-    const handleDrag = (e:any) => {
-      setTranslate({
-        x: translate.x + e.movementX,
-        y: translate.y + e.movementY
-      });
-    };
-  
-    const drag = useDrag(divRef, [translate], {
-      onDrag: handleDrag
-    });
+    const textareaHamdler = (event: React.ChangeEvent<HTMLTextAreaElement>) => dispatch(updateMessageHandlerSender(event.target.value));
 
-    useEffect(() => {console.log(drag)},[drag, storeSender]);
+    const dataSend = () => {
 
-    return <div className="container-sending"  ref={divRef} style={{transform: `translateX(${translate.x}px) translateY(${translate.y}px)`}}>
-        <div className="container-message">
-            <p>{drag.isDragging}</p>
+      fetchData(process.env.REACT_APP_SERVER as string + 'send', {from: store.from, message: store.message});
+      dispatch(openHandlerSender(false));
+
+    }
+
+    useEffect(() => {console.log(store)}, [store]);
+
+    return <OnDrag>
+    <div className="container-sending">
+      <div>
+        {store.from.map((id) => <div 
+          key={id}
+          className="message_from btn"
+          onClick={() => dispatch(deleteUserHandlerSender(id))}
+        > » {id}</div>)}
+      </div>
+      <div className="container-message">
+        <textarea className="container-textarea" onChange={textareaHamdler} ref={ref} value={store.message}/>
+      </div>
+      <div className="container-button">
+        <div className="btn btn-primary"
+          onClick={() => dispatch(updateMessageHandlerSender(store.message + "<br></br>"))}
+        >
+          <b>br</b>
         </div>
+        <div className="btn btn-primary"
+          onClick={() => dispatch(updateMessageHandlerSender(store.message + "<i></i>"))}
+        >
+          <i>i</i>
+        </div>
+        <div className="btn btn-primary"
+          onClick={() => dispatch(updateMessageHandlerSender(store.message + "<spoiler></spoiler>"))}
+        >
+          <span className="spoiler">/spoiler</span>
+        </div>
+        <button className="btn btn-sender"
+          onClick={dataSend}
+        >Отправить</button>
+      </div>
     </div>
+    </OnDrag>
 
 }
