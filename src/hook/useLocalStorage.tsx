@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
 
-export const useLocalStorage = (key: string, initialValue: Array<string>) => {
+export const useLocalStorage = (key: string, initialValue: Array<number>) => {
 
-    let [storedValue, setStoredValue] = useState<string[]>(() => {
+    let [storedValue, setStoredValue] = useState<number[]>(() => {
 
         const item = window.localStorage.getItem(key);
-        return item ? (JSON.parse(item) as string[]) : initialValue;
+        return item ? (JSON.parse(item) as number[]) : initialValue;
 
     });
 
-    const setValue = (value:string) => {
+    const setValue = (value:number) => {
 
         let filter = storedValue.find(id => value === id);
 
