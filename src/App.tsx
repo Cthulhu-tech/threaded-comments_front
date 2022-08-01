@@ -18,7 +18,7 @@ export const App = () => {
 
   const [storedValue] = useLocalStorage("hiddenMessage", []);
     
-  useEffect(() => {dispatch(updateHiddenMessageStore(storedValue as string[]));},[storedValue]);
+  useEffect(() => {dispatch(updateHiddenMessageStore(storedValue as number[]));},[storedValue]);
   useEffect(() => {fetchData(((process.env.REACT_APP_SERVER as string) + "threads"), {id: 0})}, []);
   useEffect(() => {
     if(!error.error && data && data.length > 0)

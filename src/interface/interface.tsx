@@ -44,11 +44,20 @@ export type ReduxStore = {
     MESSAGE: MessageStore;
     HIDDEN_MESSAGE: string[];
     POPUP: Popup;
+    SENDER: SenderMessage
 }
 
 export type Popup = {
     id: number;
     open: boolean;
+}
+
+export type SenderMessage = {
+
+    for: number[];
+    message: string;
+    open: boolean;
+
 }
 
 export type MessageType = {
