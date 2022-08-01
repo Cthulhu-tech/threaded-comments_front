@@ -19,8 +19,16 @@ export const SendingMessage = () => {
 
     const dataSend = () => {
 
-      fetchData(process.env.REACT_APP_SERVER as string + 'send', {from: store.from, message: store.message});
-      dispatch(openHandlerSender(false));
+      if(store.from.length > 0){
+
+        fetchData(process.env.REACT_APP_SERVER as string + 'send', {from: store.from, message: store.message});
+        dispatch(openHandlerSender(false));
+
+      }else{
+
+
+
+      }
 
     }
 
@@ -36,7 +44,10 @@ export const SendingMessage = () => {
         > » {id}</div>)}
       </div>
       <div className="container-message">
-        <textarea className="container-textarea" onChange={textareaHamdler} ref={ref} value={store.message}/>
+        {store.from.length > 0 ? 
+        <textarea className="container-textarea" onChange={textareaHamdler} ref={ref} value={store.message}/> 
+        :
+        <div className="container-error">Требуется отправитель</div>}
       </div>
       <div className="container-button">
         <div className="btn btn-primary"

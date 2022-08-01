@@ -21,7 +21,6 @@
 
     width: 100%;
     resize: none;
-    height: 100%;
     outline: none;
     padding: 3px 5px;
     min-height: 300px;
@@ -69,5 +68,15 @@
     width: 100%;
     color: $orange;
     padding: 2px 4px;
+
+}
+
+.container-error{
+
+    display: flex;
+    min-height: 300px;
+    align-items: center;
+    box-sizing: border-box;
+    justify-content: center;
 
 }
