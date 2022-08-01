@@ -54,7 +54,7 @@ export type Popup = {
 
 export type SenderMessage = {
 
-    for: number[];
+    from: number[];
     message: string;
     open: boolean;
 
@@ -67,5 +67,19 @@ export type MessageType = {
         className: string;
     }
     stateMessage: boolean;
+
+}
+
+export type Position = {
+    x: number;
+    y: number;
+}
+
+export interface IDrag {
+
+    onDrag?: (event: MouseEvent) => void;
+    onPointerDown?: (event: MouseEvent) => void;
+    onPointerUp?: (event: MouseEvent) => void;
+    onPointerMove?: (event: MouseEvent) => void;
 
 }
