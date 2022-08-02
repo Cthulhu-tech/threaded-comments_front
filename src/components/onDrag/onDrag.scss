@@ -1,10 +1,11 @@
 .container-drag_element {
 
+    z-index: 10;
     display: flex;
     margin: 0 auto;
     position: absolute;
-    z-index: 100000000;
     flex-direction: column;
+    background-color: #eee;
     border: 1px solid white;
     width: clamp(280px, 60%, 600px);
 

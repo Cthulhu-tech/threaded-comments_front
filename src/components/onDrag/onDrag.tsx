@@ -48,7 +48,7 @@ export const OnDrag = (props: {children: React.ReactNode}) => {
 
     }
     
-    const drag = useDrag(ref, translate, {onDrag: handleDrag, onPointerDown: enableDragging });
+    const drag = useDrag(ref, translate, {onDrag: handleDrag, onMouseDown: enableDragging });
     
     useEffect(() => {},[drag, storeSender]);
 
