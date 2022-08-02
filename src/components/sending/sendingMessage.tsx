@@ -19,16 +19,8 @@ export const SendingMessage = () => {
 
     const dataSend = () => {
 
-      if(store.from.length > 0){
-
         fetchData(process.env.REACT_APP_SERVER as string + 'send', {from: store.from, message: store.message});
         dispatch(openHandlerSender(false));
-
-      }else{
-
-
-
-      }
 
     }
 
@@ -37,14 +29,14 @@ export const SendingMessage = () => {
     return <OnDrag>
     <div className="container-sending">
       <div>
-        {store.from.map((id) => <div 
-          key={id}
+        {store?.from?.length > 0 && store.from.map((id) => <div 
+          key={id.msg}
           className="message_from btn"
-          onClick={() => dispatch(deleteUserHandlerSender(id))}
-        > » {id}</div>)}
+          onClick={() => dispatch(deleteUserHandlerSender({msg: id.msg, thread: id.thread}))}
+        > » {id.msg === 0 ? 'в тред №' + id.thread : id.msg}</div>)}
       </div>
       <div className="container-message">
-        {store.from.length > 0 ? 
+      {store.from.length > 0 ? 
         <textarea className="container-textarea" onChange={textareaHamdler} ref={ref} value={store.message}/> 
         :
         <div className="container-error">Требуется отправитель</div>}
@@ -65,9 +57,10 @@ export const SendingMessage = () => {
         >
           <span className="spoiler">/spoiler</span>
         </div>
+        {store.from.length > 0 && 
         <button className="btn btn-sender"
           onClick={dataSend}
-        >Отправить</button>
+        >Отправить</button>}
       </div>
     </div>
     </OnDrag>
