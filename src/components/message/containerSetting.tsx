@@ -27,7 +27,7 @@ export const ContainerSetting = (data: {msg: LastMessage}) => {
         <p className="drop_down_list_paragraph" 
             onClick={() => {
                 !openSender && dispatch(openHandlerSender(true));
-                dispatch(addUserHandlerSender(data.msg.id));
+                dispatch(addUserHandlerSender({msg: data.msg.id, thread: data.msg.thread_id}));
             }}
         >ответить</p>
     </div>
