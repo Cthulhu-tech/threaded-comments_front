@@ -2,6 +2,7 @@ import { LastMessage, ReduxStore } from "../../interface/interface";
 import { updatePopup } from "../../redux/store/settingPopup";
 import { dateFormating } from "../../utils/dateFormating";
 import { ContainerSetting } from "./containerSetting";
+import parse, { domToReact } from 'html-react-parser';
 import { useEffect, useMemo, useState } from "react";
 import { SubMessage } from "./subMessage";
 import { useSelector } from "react-redux";
@@ -47,7 +48,19 @@ export const Message = (data: {msg: LastMessage, className: string}) => {
             <div className="image_container-msg">
                 {msg?.img && msg?.img.map((img, i) => <Image key={i} {...{src: img, alt: msg.img_name && msg?.img_name[i]}} />)}
             </div>
-            <p>{msg.text_message}</p>
+            <p>{parse(msg.text_message, {
+                replace: (domNode) => {
+                    if ((domNode as any).name === "br") {
+                        return <b>{(domNode as any).name}</b>
+                    }
+                    if ((domNode as any).name === "i") {
+                        return <i>{(domNode as any).name}</i>
+                    }
+                    if ((domNode as any).name === "spoiler") {
+                        return <span className="spoiler">{domToReact((domNode as any).children, (domNode as any).options)}</span>
+                    }
+                }
+            })}</p>
             </> : <p>скрыто</p>}
         </div>
             <SubMessage data={data} stateMessage={false}/>

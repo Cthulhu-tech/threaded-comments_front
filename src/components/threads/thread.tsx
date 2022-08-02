@@ -19,7 +19,9 @@ export const Thread = (thread: Threads) => {
             <p className="text creator">{thread.creator}</p>
             <p className="text">{dateFormating(thread.date_create)}</p>
             <p className="text">№{thread.id}</p>
-            <div className="btn answer">ответ</div>
+            <div className="btn answer"
+                
+            >ответ</div>
         </article>
         <article className="image_container">
             {thread.img.map((img, i) => <Image key={i} {...{src: img, alt: thread.img_name[i]}} />)}
