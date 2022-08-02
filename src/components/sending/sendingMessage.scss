@@ -20,11 +20,25 @@
 .container-textarea{
 
     width: 100%;
+    z-index: 20;
+    position: relative;
+    min-height: 300px;
+    box-sizing: border-box;
+
+}
+
+.input {
+
     resize: none;
     outline: none;
     padding: 3px 5px;
-    min-height: 300px;
-    box-sizing: border-box;
+
+}
+
+.input_img {
+
+    width: 100%;
+    min-height: 28px;
 
 }
 
@@ -47,6 +61,12 @@
     align-items: center;
     justify-content: center;
     background-color: #eee;
+
+    &:hover {
+
+        background-color: whitesmoke;
+
+    }
 
 }
 
@@ -78,5 +98,48 @@
     align-items: center;
     box-sizing: border-box;
     justify-content: center;
+
+}
+
+.container_img{
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.sub_container-img{
+
+    position: relative;
+    display: inline-block;
+
+    &:hover .close{
+
+        opacity: 1;
+        transition: all 0.2s;
+
+    }
+
+    background-color: white;
+
+}
+
+.close {
+
+    top: 0;
+    right: 0;
+    opacity: 0;
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    background-color: #eee;
+
+}
+
+.container_img-close{
+
+    float: right;
+    padding: 0 5px;
 
 }
