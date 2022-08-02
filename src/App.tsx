@@ -34,6 +34,7 @@ export const App = () => {
     <Routes>
       <Route element={<Layouts/>}>
         <Route path="/" element={<HomeView/>}/>
+        <Route path="/thread/:id" element={<>thread</>}/>
       </Route>
     </Routes>
   </BrowserRouter>
