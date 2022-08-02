@@ -22,9 +22,9 @@ export const Footer = () => {
 
     }, [load]);
 
-    return <footer ref={error.message !== "not found" ? ref : null} className="footer layout">
+    return <footer ref={!error.message.includes("not found") ? ref : null} className="footer layout">
 
-        {error.message === "not found" && <p className="end_load">конец</p>}
+        {error.message.includes("not found")  && <p className="end_load">конец</p>}
 
     </footer>
 
