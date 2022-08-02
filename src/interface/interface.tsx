@@ -36,6 +36,7 @@ export interface LastMessage {
     img: string[];
     img_name: string[];
     date_create: string;
+    thread_id: number;
 }
 
 
@@ -44,20 +45,12 @@ export type ReduxStore = {
     MESSAGE: MessageStore;
     HIDDEN_MESSAGE: string[];
     POPUP: Popup;
-    SENDER: SenderMessage
+    SENDER: MessageSenderFrom
 }
 
 export type Popup = {
     id: number;
     open: boolean;
-}
-
-export type SenderMessage = {
-
-    from: number[];
-    message: string;
-    open: boolean;
-
 }
 
 export type MessageType = {
@@ -81,5 +74,18 @@ export interface IDrag {
     onPointerDown?: (event: MouseEvent) => void;
     onPointerUp?: (event: MouseEvent) => void;
     onPointerMove?: (event: MouseEvent) => void;
+
+}
+
+export type SenderFrom = { 
+    msg: number; 
+    thread: number; 
+}
+
+export type MessageSenderFrom = {
+
+    from: never[] | SenderFrom[];
+    message: string;
+    open: boolean;
 
 }
