@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 
 export const useDrag = (ref: React.MutableRefObject<HTMLDivElement | null>, deps:Position, options: IDrag) => {
   const {
-    onPointerDown = () => {},
-    onPointerUp = () => {},
-    onPointerMove = () => {},
+    onMouseDown = () => {},
+    onMouseUp = () => {},
+    onMouseMove = () => {},
     onDrag = () => {}
   } = options;
 
@@ -15,7 +15,7 @@ export const useDrag = (ref: React.MutableRefObject<HTMLDivElement | null>, deps
 
     setIsDragging(true);
 
-    onPointerDown(e);
+    onMouseDown(e);
 
   }
 
@@ -23,12 +23,12 @@ export const useDrag = (ref: React.MutableRefObject<HTMLDivElement | null>, deps
 
     setIsDragging(false);
 
-    onPointerUp(e);
+    onMouseUp(e);
 
   }
 
   const handlePointerMove = (e:MouseEvent) => {
-    onPointerMove(e);
+    onMouseMove(e);
 
     if (isDragging) return onDrag(e);
   }
