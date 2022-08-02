@@ -71,9 +71,9 @@ export type Position = {
 export interface IDrag {
 
     onDrag?: (event: MouseEvent) => void;
-    onPointerDown?: (event: MouseEvent) => void;
-    onPointerUp?: (event: MouseEvent) => void;
-    onPointerMove?: (event: MouseEvent) => void;
+    onMouseDown?: (event: MouseEvent) => void;
+    onMouseUp?: (event: MouseEvent) => void;
+    onMouseMove?: (event: MouseEvent) => void;
 
 }
 
@@ -87,5 +87,11 @@ export type MessageSenderFrom = {
     from: never[] | SenderFrom[];
     message: string;
     open: boolean;
+    image: never[] | Img[];
 
+}
+
+export type Img = {
+    src: string;
+    alt: string;
 }
