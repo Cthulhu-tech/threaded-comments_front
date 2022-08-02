@@ -1,11 +1,12 @@
-import { Action, MessageSenderFrom, SenderFrom  } from "../../interface/interface";
+import { Action, Img, MessageSenderFrom, SenderFrom  } from "../../interface/interface";
 
 
 const defaultState: MessageSenderFrom = {
 
     from: [],
     message: "",
-    open: false
+    open: false,
+    image: []
 
 }
 
@@ -14,7 +15,10 @@ const SendMessageHandler = "SEND_MESSAGE_HANDLER";
 const SendAddUserHandler = "SEND_ADD_USER_HANDLER";
 const SendDeleteUserHandler = "SEND_DELETE_USER_HANDLER";
 
-export const SenderMessageStore = (state = defaultState, action:Action<string, string | number | boolean | SenderFrom>) => {
+const SendAddImgHandler = "SEND_ADD_IMG_USER_HANDLER";
+const SendDeleteImgHandler = "SEND_DELETE_IMG_USER_HANDLER";
+
+export const SenderMessageStore = (state = defaultState, action:Action<string, string | number | boolean | SenderFrom | Img>) => {
 
     switch (action.type){
         case SendOpenHandler:
@@ -32,6 +36,10 @@ export const SenderMessageStore = (state = defaultState, action:Action<string, s
             state = {...state, from: filterData.length > 0 ? (filterData as SenderFrom[]) : []}
             state.from = state.from.filter((value, index, self) => index === self.findIndex((t) => (t.msg === value.msg)));
             return state;
+        case SendAddImgHandler:
+            return {...state, image: [...state.image, action.payload as Img]}
+        case SendDeleteImgHandler:
+            return {...state, image: [...state.image.filter(img => img.src !== (action.payload as Img).src)]}
         default:
             return state;
     }
@@ -42,3 +50,6 @@ export const openHandlerSender = (payload: boolean) => ({ type: SendOpenHandler,
 export const updateMessageHandlerSender = (payload: string) => ({ type: SendMessageHandler, payload });
 export const addUserHandlerSender = (payload: SenderFrom) => ({ type: SendAddUserHandler, payload });
 export const deleteUserHandlerSender = (payload: SenderFrom) => ({ type: SendDeleteUserHandler, payload });
+
+export const addImgHandlerSender = (payload: Img) => ({ type: SendAddImgHandler, payload });
+export const deleteImgHandlerSender = (payload: Img) => ({ type: SendDeleteImgHandler, payload });
