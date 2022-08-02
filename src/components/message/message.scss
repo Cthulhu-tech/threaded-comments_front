@@ -99,8 +99,8 @@
 
 .dynamic_message{
 
+    z-index: 9;
     display: flex;
-    z-index: 9999;
     position: absolute;
     width: clamp(100px, 100%, 800px);
 
