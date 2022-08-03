@@ -1,5 +1,5 @@
 import { addUserHandlerSender, openHandlerSender } from "../../redux/store/senderMessage";
-import { ReduxStore, Threads } from "../../interface/interface";
+import { ReduxStore, ThreadsInside } from "../../interface/interface";
 import { dateFormating } from "../../utils/dateFormating";
 import parse, { domToReact } from 'html-react-parser';
 import { useNavigate } from "react-router-dom";
@@ -9,8 +9,9 @@ import { useDispatch } from "react-redux";
 import { Image } from "../img/img";
 import { useEffect } from "react";
 import './thread.scss';
+import { NavLink } from "react-router-dom";
 
-export const Thread = (thread: Threads) => {
+export const Thread = (thread: ThreadsInside) => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -20,9 +21,9 @@ export const Thread = (thread: Threads) => {
 
     return <section className="thread_container">
         <article className="thread_info">
-            <h1 className="thread_theam text  btn"
-                onClick={() => navigate('/thread/' + thread.id)}
-            >{thread.name}</h1>
+            <NavLink className="thread_theam text  btn" 
+            to={'/thread/' + thread.id}
+            >{thread.name}</NavLink>
             <p className="text creator">{thread.creator}</p>
             <p className="text">{dateFormating(thread.date_create)}</p>
             <p className="text">№{thread.id}</p>
@@ -51,7 +52,8 @@ export const Thread = (thread: Threads) => {
                 }
             })}
         </article>
-        <>{thread.message.slice(0).reverse().map(msg => <Message key={msg.id} {...{msg: msg, className: "message"}} />)}</>
+        <>{thread.type && thread.message.map((msg) => <Message key={msg.id} {...{msg: msg, className: "message"}} />)}</>
+        <>{!!!thread.type && thread.message.slice(-3).map((msg) => <Message key={msg.id} {...{msg: msg, className: "message"}} />)}</>
     </section>
 
 }

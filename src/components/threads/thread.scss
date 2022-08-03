@@ -9,9 +9,9 @@
     margin: 20px auto;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: space-between;
-    width: clamp(100px, 70%, 1980px);
     border-top: 1px solid $border;
+    justify-content: space-between;
+    width: clamp(100px, 90%, 1980px);
 
 }
 
@@ -42,6 +42,9 @@
 .thread_theam{
 
     color: $blue;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none;
 
 }
 
