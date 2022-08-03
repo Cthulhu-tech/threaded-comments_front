@@ -24,7 +24,7 @@ export const SendingMessage = () => {
 
     const dataSend = () => {
 
-        fetchData(process.env.REACT_APP_SERVER as string + 'message', {from: store.from, message: store.message, img: store.image});
+        fetchData(process.env.REACT_APP_SERVER as string + 'message', {from: store.from, message: store.message, img: store.image, name: store.name});
         dispatch(openHandlerSender(false));
 
     }

@@ -101,6 +101,7 @@ export type MessageSenderFrom = {
     message: string;
     open: boolean;
     image: never[] | Img[];
+    name: string;
 
 }
 

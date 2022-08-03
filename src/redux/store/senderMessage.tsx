@@ -6,11 +6,13 @@ const defaultState: MessageSenderFrom = {
     from: [],
     message: "",
     open: false,
-    image: []
+    image: [],
+    name: ""
 
 }
 
 const SendOpenHandler = "SEND_OPEN_HANDLER";
+const SendNameUserHandler = "SEND_NAME_HANDLER";
 const SendMessageHandler = "SEND_MESSAGE_HANDLER";
 const SendAddUserHandler = "SEND_ADD_USER_HANDLER";
 const SendDeleteUserHandler = "SEND_DELETE_USER_HANDLER";
@@ -40,6 +42,8 @@ export const SenderMessageStore = (state = defaultState, action:Action<string, s
             return {...state, image: [...state.image, action.payload as Img]}
         case SendDeleteImgHandler:
             return {...state, image: [...state.image.filter(img => img.src !== (action.payload as Img).src)]}
+        case SendNameUserHandler:
+            return {...state, name: action.payload}
         default:
             return state;
     }
@@ -47,6 +51,7 @@ export const SenderMessageStore = (state = defaultState, action:Action<string, s
 
 
 export const openHandlerSender = (payload: boolean) => ({ type: SendOpenHandler, payload });
+export const updateNameHandlerSender = (payload: string) => ({ type: SendNameUserHandler, payload });
 export const updateMessageHandlerSender = (payload: string) => ({ type: SendMessageHandler, payload });
 export const addUserHandlerSender = (payload: SenderFrom) => ({ type: SendAddUserHandler, payload });
 export const deleteUserHandlerSender = (payload: SenderFrom) => ({ type: SendDeleteUserHandler, payload });
