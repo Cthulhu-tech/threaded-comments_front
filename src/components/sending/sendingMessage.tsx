@@ -8,8 +8,8 @@ import { useDispatch } from 'react-redux';
 import { ButtonMessage } from './button';
 import { InputSending } from './input';
 import { ImageMessage } from './image';
-
 import './sendingMessage.scss';
+import { Name } from './name';
 
 export const SendingMessage = () => {
 
@@ -24,7 +24,7 @@ export const SendingMessage = () => {
 
     const dataSend = () => {
 
-        fetchData(process.env.REACT_APP_SERVER as string + 'send', {from: store.from, message: store.message});
+        fetchData(process.env.REACT_APP_SERVER as string + 'message', {from: store.from, message: store.message, img: store.image});
         dispatch(openHandlerSender(false));
 
     }
@@ -42,9 +42,9 @@ export const SendingMessage = () => {
         > » {id.msg === 0 ? 'в тред №' + id.thread : id.msg}</div>)}
       </div>
       <div className="container-message">
-        <textarea 
-        className="container-textarea input" onChange={textareaHamdler} ref={ref} value={store.message}/> 
+        <textarea className="container-textarea input" onChange={textareaHamdler} ref={ref} value={store.message}/> 
       </div>
+      <Name/>
       <ImageMessage/>
       {img && <InputSending/>}
       <div className="container-button">
