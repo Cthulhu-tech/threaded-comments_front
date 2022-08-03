@@ -15,9 +15,22 @@ export interface Threads {
     message: LastMessage[];
 }
 
+export interface ThreadsInside extends Threads {
+
+    type?: string;
+
+}
+
 export type ThreadsStore = {
 
     threads: Threads[];
+
+}
+
+export interface ErrorStore {
+
+    message: string;
+    resolve: boolean;
 
 }
 
